@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.LgBidPeopleMapper" >
+  <resultMap id="BaseResultMap" type="com.model.LgBidPeople" >
+    <id column="bidpeopleId" property="bidpeopleid" jdbcType="INTEGER" />
+    <result column="bidUserid" property="biduserid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="bidId" property="bidid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bidpeopleId, bidUserid, status, time, name, price, phoneNumber, bidId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lgbidpeople
+    where bidpeopleId = #{bidpeopleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lgbidpeople
+    where bidpeopleId = #{bidpeopleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.LgBidPeople" >
+    insert into lgbidpeople (bidpeopleId, bidUserid, status, 
+      time, name, price, 
+      phoneNumber, bidId)
+    values (#{bidpeopleid,jdbcType=INTEGER}, #{biduserid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{time,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{phonenumber,jdbcType=VARCHAR}, #{bidid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.LgBidPeople" >
+    insert into lgbidpeople
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bidpeopleid != null" >
+        bidpeopleId,
+      </if>
+      <if test="biduserid != null" >
+        bidUserid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber,
+      </if>
+      <if test="bidid != null" >
+        bidId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bidpeopleid != null" >
+        #{bidpeopleid,jdbcType=INTEGER},
+      </if>
+      <if test="biduserid != null" >
+        #{biduserid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bidid != null" >
+        #{bidid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.LgBidPeople" >
+    update lgbidpeople
+    <set >
+      <if test="biduserid != null" >
+        bidUserid = #{biduserid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bidid != null" >
+        bidId = #{bidid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bidpeopleId = #{bidpeopleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.LgBidPeople" >
+    update lgbidpeople
+    set bidUserid = #{biduserid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      time = #{time,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      bidId = #{bidid,jdbcType=INTEGER}
+    where bidpeopleId = #{bidpeopleid,jdbcType=INTEGER}
+  </update>
+</mapper>

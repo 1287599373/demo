@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.model.User" >
+    <id column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="PassWord" property="password" jdbcType="VARCHAR" />
+    <result column="NikeName" property="nikename" jdbcType="VARCHAR" />
+    <result column="CompanyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="CreditCode" property="creditcode" jdbcType="VARCHAR" />
+    <result column="CompanyAddress" property="companyaddress" jdbcType="VARCHAR" />
+    <result column="BankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="AccumulatePoints" property="accumulatepoints" jdbcType="DOUBLE" />
+    <result column="TerraceType" property="terracetype" jdbcType="INTEGER" />
+    <result column="Time" property="time" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserId, UserName, PassWord, NikeName, CompanyName, CreditCode, CompanyAddress, BankAccount, 
+    AccumulatePoints, TerraceType, Time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lguser
+    where UserId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lguser
+    where UserId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.User" >
+    insert into lguser (UserId, UserName, PassWord, 
+      NikeName, CompanyName, CreditCode, 
+      CompanyAddress, BankAccount, AccumulatePoints, 
+      TerraceType, Time)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nikename,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, #{creditcode,jdbcType=VARCHAR}, 
+      #{companyaddress,jdbcType=VARCHAR}, #{bankaccount,jdbcType=VARCHAR}, #{accumulatepoints,jdbcType=DOUBLE}, 
+      #{terracetype,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.User" >
+    insert into lguser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="password != null" >
+        PassWord,
+      </if>
+      <if test="nikename != null" >
+        NikeName,
+      </if>
+      <if test="companyname != null" >
+        CompanyName,
+      </if>
+      <if test="creditcode != null" >
+        CreditCode,
+      </if>
+      <if test="companyaddress != null" >
+        CompanyAddress,
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount,
+      </if>
+      <if test="accumulatepoints != null" >
+        AccumulatePoints,
+      </if>
+      <if test="terracetype != null" >
+        TerraceType,
+      </if>
+      <if test="time != null" >
+        Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nikename != null" >
+        #{nikename,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcode != null" >
+        #{creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        #{companyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accumulatepoints != null" >
+        #{accumulatepoints,jdbcType=DOUBLE},
+      </if>
+      <if test="terracetype != null" >
+        #{terracetype,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.User" >
+    update lguser
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PassWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nikename != null" >
+        NikeName = #{nikename,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        CompanyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcode != null" >
+        CreditCode = #{creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyaddress != null" >
+        CompanyAddress = #{companyaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="accumulatepoints != null" >
+        AccumulatePoints = #{accumulatepoints,jdbcType=DOUBLE},
+      </if>
+      <if test="terracetype != null" >
+        TerraceType = #{terracetype,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        Time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.User" >
+    update lguser
+    set UserName = #{username,jdbcType=VARCHAR},
+      PassWord = #{password,jdbcType=VARCHAR},
+      NikeName = #{nikename,jdbcType=VARCHAR},
+      CompanyName = #{companyname,jdbcType=VARCHAR},
+      CreditCode = #{creditcode,jdbcType=VARCHAR},
+      CompanyAddress = #{companyaddress,jdbcType=VARCHAR},
+      BankAccount = #{bankaccount,jdbcType=VARCHAR},
+      AccumulatePoints = #{accumulatepoints,jdbcType=DOUBLE},
+      TerraceType = #{terracetype,jdbcType=INTEGER},
+      Time = #{time,jdbcType=VARCHAR}
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
