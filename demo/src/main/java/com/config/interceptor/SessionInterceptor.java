@@ -14,6 +14,9 @@ import com.utils.Constants;
 import com.utils.ResultEnum;
 import com.utils.ResultUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SessionInterceptor implements HandlerInterceptor {
 
 	// 不鉴权接口后缀
@@ -36,6 +39,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
+		log.info("result:{}",result);
 		return true;
 	}
 

@@ -161,4 +161,11 @@
       Time = #{time,jdbcType=VARCHAR}
     where UserId = #{userid,jdbcType=INTEGER}
   </update>
+  
+  <select id="login" resultMap="BaseResultMap">
+  	select UserId, UserName, NikeName, CompanyName, CreditCode, 
+    AccumulatePoints, TerraceType, Time
+    from lguser
+    where UserName = #{username} and PassWord=#{password}
+  </select>
 </mapper>

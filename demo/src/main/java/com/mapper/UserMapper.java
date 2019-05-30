@@ -1,5 +1,7 @@
 package com.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.model.User;
 
 public interface UserMapper {
@@ -14,4 +16,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+	User login(@Param(value = "username") String username, @Param(value="password") String password);
 }

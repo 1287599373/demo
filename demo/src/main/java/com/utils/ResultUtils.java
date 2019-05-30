@@ -25,7 +25,7 @@ public class ResultUtils {
 		JSONObject json = new JSONObject();
 		json.put(Constants.Inter.CODE, resultEnum.code);
 		json.put(Constants.Inter.MSG, resultEnum.msg);
-		json.put(Constants.Inter.DATA,ObjToJsonStr(data));
+		json.put(Constants.Inter.DATA,data);
 		return json;
 	}
 	
