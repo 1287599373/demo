@@ -168,4 +168,10 @@
     from lguser
     where UserName = #{username} and PassWord=#{password}
   </select>
+  
+  <select id="findAllUsers" resultMap="BaseResultMap">
+  	select
+  		<include refid="Base_Column_List" />
+    from lguser
+  </select>
 </mapper>

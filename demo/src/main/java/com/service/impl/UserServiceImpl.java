@@ -1,5 +1,7 @@
 package com.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,4 +29,8 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
+	@Override
+	public List<User> findAllUsers() {
+		return userMapper.findAllUsers();
+	}
 }

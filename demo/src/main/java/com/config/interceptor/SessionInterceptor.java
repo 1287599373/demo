@@ -20,12 +20,12 @@ import lombok.extern.slf4j.Slf4j;
 public class SessionInterceptor implements HandlerInterceptor {
 
 	// 不鉴权接口后缀
-	private String[] includeUrls = new String[] { "/login", "/exit" };
+	private String[] includeUrls = new String[] { "/login", "/exit"};
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String url = request.getRequestURI();
+		String url = request.getRequestURI(); 
 		// 判断是否匹配不鉴权接口
 		boolean result = Arrays.asList(includeUrls).stream().anyMatch((x) -> url.endsWith(x));
 		if (!result) {// 鉴权

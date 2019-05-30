@@ -1,5 +1,7 @@
 package com.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.model.User;
@@ -18,4 +20,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
 	User login(@Param(value = "username") String username, @Param(value="password") String password);
+	
+	List<User> findAllUsers();
 }
