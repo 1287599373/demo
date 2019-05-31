@@ -1,14 +1,23 @@
 package com.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.druid.util.StringUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mapper.UserMapper;
 import com.model.User;
 import com.service.UserService;
+import com.utils.ResultEnum;
+import com.utils.ResultUtils;
+import com.utils.page.LayPage;
+import com.utils.page.PageUtils;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -32,5 +41,22 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> findAllUsers() {
 		return userMapper.findAllUsers();
+	}
+
+	@Override
+	public LayPage getUserList(User user, PageUtils page) {
+		PageHelper.startPage(page.getCurrPage(), page.getPageSize());
+		List<User> userList = userMapper.findUsers(user);
+		PageInfo<User> pageInfo = new PageInfo<User>(userList);
+		return LayPage.create(pageInfo);
+	}
+
+	@Override
+	@Transactional
+	public String saveUser(User user) {
+		int i = userMapper.insertSelective(user);
+		if(i>0)
+			return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
+		return ResultUtils.createResult(ResultEnum.FAIL,null).toJSONString();
 	}
 }

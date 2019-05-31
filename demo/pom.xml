@@ -62,6 +62,12 @@
 			<optional>true</optional>
 		</dependency>
 		
+		<dependency>
+		    <groupId>commons-lang</groupId>
+		    <artifactId>commons-lang</artifactId>
+		    <version>2.6</version>
+		</dependency>
+		
 		<!-- 热部署 -->
 		<dependency>
 	        <groupId>org.springframework.boot</groupId>

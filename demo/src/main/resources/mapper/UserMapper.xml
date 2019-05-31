@@ -174,4 +174,18 @@
   		<include refid="Base_Column_List" />
     from lguser
   </select>
+  
+  <select id="findUsers" parameterType="com.model.User" resultMap="BaseResultMap">
+  	select
+  		UserId, UserName, NikeName, CompanyName, Time
+    from lguser
+    where 1=1 
+    <if test="username !=null and username !=''">
+    	and UserName like concat('%',#{username},'%')
+    </if>
+    <if test="companyname !=null and companyname !=''">
+    	and CompanyName like concat('%',#{companyname},'%')
+    </if>
+    order by Time desc
+  </select>
 </mapper>

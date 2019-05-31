@@ -22,4 +22,6 @@ public interface UserMapper {
 	User login(@Param(value = "username") String username, @Param(value="password") String password);
 	
 	List<User> findAllUsers();
+
+	List<User> findUsers(User user);
 }

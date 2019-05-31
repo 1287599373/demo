@@ -21,7 +21,7 @@ import com.service.UserService;
 import com.utils.BaseController;
 import com.utils.Constants;
 import com.utils.ResultEnum;
-import com.utils.page.Layui;
+import com.utils.page.LayPage;
 import com.utils.page.PageUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,11 +60,6 @@ public class LoginController extends BaseController{
 		return response(ResultEnum.SUCCESS, null);
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
-		return "hello";
-	}
-	
 	/**
 	 * 测试分页用
 	 * @param params
@@ -72,12 +67,12 @@ public class LoginController extends BaseController{
 	 */
 	@RequestMapping("/user/list")
     @ResponseBody
-    public Layui list(@RequestParam Map<String, Object> params){
+    public LayPage list(@RequestParam Map<String, Object> params){
      
 		PageUtils pageUtil = new PageUtils(request);
 		PageHelper.startPage(pageUtil.getCurrPage(), pageUtil.getPageSize());
         List<User> findAllUsers = userService.findAllUsers();
         PageInfo<User> tmp = new PageInfo<>(findAllUsers);
-        return Layui.data((int)tmp.getTotal(), tmp.getList());
+        return LayPage.data((int)tmp.getTotal(), tmp.getList());
     }
 }
