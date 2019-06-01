@@ -57,4 +57,16 @@ public class UserServiceImpl implements UserService{
 			return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
 		return ResultUtils.createResult(ResultEnum.FAIL,null).toJSONString();
 	}
+
+	@Override
+	public String getUserInfo(Integer id) {
+		if(null == id) {
+			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();
+		}
+		User user = userMapper.selectByPrimaryKey(id);
+		if(null == user) {
+			return ResultUtils.createResult(ResultEnum.NO_DATA, null).toJSONString();
+		}
+		return ResultUtils.createResult(ResultEnum.SUCCESS, user).toJSONString();
+	}
 }

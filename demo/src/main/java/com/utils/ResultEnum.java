@@ -6,7 +6,7 @@ public enum ResultEnum {
 	,PARAM_ERROR(2,"参数错误")
 	,NOLOGIN(3,"未登录")
 	,USERNAME_OR_PASSWORD_ERR(4,"用户名或密码错误")
-	,FAIL(5,"处理失败")
+	,FAIL(5,"处理失败"), NO_DATA(6,"无数据")
 	;
 	public int code;
 	public String msg;

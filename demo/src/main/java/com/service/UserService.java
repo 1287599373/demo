@@ -15,4 +15,6 @@ public interface UserService {
 	LayPage getUserList(User user, PageUtils page);
 
 	String saveUser(User user);
+
+	String getUserInfo(Integer id);
 }
