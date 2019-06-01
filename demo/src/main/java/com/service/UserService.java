@@ -17,4 +17,8 @@ public interface UserService {
 	String saveUser(User user);
 
 	String getUserInfo(Integer id);
+
+	String updateUser(User user);
+
+	String delete(String ids);
 }

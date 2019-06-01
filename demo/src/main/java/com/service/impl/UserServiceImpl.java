@@ -1,6 +1,8 @@
 package com.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +71,31 @@ public class UserServiceImpl implements UserService{
 		}
 		return ResultUtils.createResult(ResultEnum.SUCCESS, user).toJSONString();
 	}
+
+	@Override
+	public String updateUser(User user) {
+		if(null == user || null == user.getUserid()) {
+			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();
+		}
+		int i = userMapper.updateByPrimaryKeySelective(user);
+		if(i>0)
+			return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
+		return ResultUtils.createResult(ResultEnum.FAIL,null).toJSONString();
+	}
+
+	@Override
+	public String delete(String ids) {
+		if(StringUtils.isEmpty(ids)) {
+			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();
+		}
+		List<String> idList = Arrays.asList(ids.split(","));
+		boolean validate = idList.stream().allMatch(id -> Pattern.matches("\\d+",id));
+		if(!validate) {
+			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();
+		}
+		idList.forEach(id->{
+			userMapper.deleteByPrimaryKey(Integer.parseInt(id));
+		});
+		return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
+	}	
 }

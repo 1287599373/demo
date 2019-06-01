@@ -38,4 +38,14 @@ public class UserController extends BaseController{
 	public String getUserInfo(@RequestParam Integer id) {
 		return userService.getUserInfo(id);
 	}
+	
+	@RequestMapping("/update")
+	public String updateUser(User user) {
+		return userService.updateUser(user);
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam String ids) {
+		return userService.delete(ids);
+	}
 }
