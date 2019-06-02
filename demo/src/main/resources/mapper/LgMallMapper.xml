@@ -103,4 +103,17 @@
       mallorder = #{mallorder,jdbcType=INTEGER}
     where mallId = #{mallid,jdbcType=INTEGER}
   </update>
+    <select id="findMalls" parameterType="com.model.LgMall" resultMap="BaseResultMap">
+  	select
+  		<include refid="Base_Column_List" />
+    from lgmall
+    where 1=1 
+    <if test="name !=null and name !=''">
+    	and name like concat('%',#{name},'%')
+    </if>
+    <if test="mallorder !=null and mallorder !=''">
+    	and mallorder like concat('%',#{mallorder},'%')
+    </if>
+    order by time desc
+  </select>
 </mapper>
