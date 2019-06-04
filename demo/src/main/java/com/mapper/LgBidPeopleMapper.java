@@ -1,5 +1,10 @@
 package com.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.model.LgBidPeople;
 
 public interface LgBidPeopleMapper {
@@ -14,4 +19,6 @@ public interface LgBidPeopleMapper {
     int updateByPrimaryKeySelective(LgBidPeople record);
 
     int updateByPrimaryKey(LgBidPeople record);
+
+	List<Map<String, Object>> getLgBidPeoplePage(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("userName") String userName);
 }

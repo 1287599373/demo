@@ -150,4 +150,22 @@
       UserId = #{userid,jdbcType=INTEGER}
     where bidId = #{bidid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getLgBidPage" resultType="map">
+select 
+  	a.Goodsname, a.Quantity, a.Consignment, a.ReceivingPlace, a.bidTime, IF(a.bidStart=1,'已标选','未标选') as bidStart, a.finishStart, 
+    a.Time,u.username
+  	from lgbid a left join lguser u on a.userid = u.userid
+  	where 1=1
+  	<if test="startTime !=null and startTime !=''">
+  		and a.time &gt;= #{startTime}
+  	</if>
+  	<if test="endTime !=null and endTime !=''">
+  		and a.time &lt;= #{endTime}
+  	</if>
+  	<if test="userName !=null and userName !=''">
+  		and u.username = #{userName}
+  	</if>
+  	order by a.time desc
+  </select>
 </mapper>

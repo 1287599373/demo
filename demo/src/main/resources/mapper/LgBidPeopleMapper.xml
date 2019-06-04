@@ -125,4 +125,19 @@
       bidId = #{bidid,jdbcType=INTEGER}
     where bidpeopleId = #{bidpeopleid,jdbcType=INTEGER}
   </update>
+  <select id="getLgBidPeoplePage" resultType="map">
+  	select  IF(p.status=1,'已标选','未标选') as status, p.time, p.name, p.price, p.phoneNumber,u.UserName 
+  	from lgbidpeople p LEFT JOIN lguser u on p.bidUserid=u.UserId
+  	WHERE 1=1
+  	<if test="startTime !=null and startTime !=''">
+  		and p.time &gt;= #{startTime}
+  	</if>
+  	<if test="endTime !=null and endTime !=''">
+  		and p.time &lt;= #{endTime}
+  	</if>
+  	<if test="userName !=null and userName !=''">
+  		and u.username = #{userName}
+  	</if>
+	ORDER BY p.time desc 
+  </select>
 </mapper>
