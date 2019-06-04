@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +31,6 @@ public class MallController extends BaseController{
 	
 	@RequestMapping("/list")
 	public LayPage getMallList(LgMall mall) {
-		log.info("MallController.getMallList");
 		PageUtils page = new PageUtils(request);
 		LayPage layPage = mallService.getMallList(mall,page);
 		return layPage;

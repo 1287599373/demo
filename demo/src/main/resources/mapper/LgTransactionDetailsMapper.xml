@@ -103,4 +103,29 @@
       Consumptionintegral = #{consumptionintegral,jdbcType=INTEGER}
     where tdId = #{tdid,jdbcType=INTEGER}
   </update>
+  
+   <select id="getMallTradePage" resultType="map">
+  	select lu.UserName,lt.time,lm.mallorder,lm.name,lm.Requiredintegral,lt.mallNumber,lt.Consumptionintegral from lgtransactiondetails lt
+	LEFT JOIN lgmall lm
+	on lm.mallId = lt.mallId 
+	LEFT JOIN lguser lu
+	on lu.UserId = lt.userId
+  	WHERE 1=1
+  	<if test="startTime !=null and startTime !=''">
+  		and lt.time &gt;= #{startTime}
+  	</if>
+  	<if test="endTime !=null and endTime !=''">
+  		and lt.time &lt;= #{endTime}
+  	</if>
+  	<if test="userName !=null and userName !=''">
+  		and lu.username = #{userName}
+  	</if>
+  	<if test="mallOrder !=null and mallOrder !=''">
+  		and lm.mallorder = #{mallOrder}
+  	</if>
+  	<if test="mallName !=null and mallName !=''">
+  		and lm.name like concat('%',#{mallName},'%')
+  	</if>
+	ORDER BY lt.time asc
+  </select>
 </mapper>

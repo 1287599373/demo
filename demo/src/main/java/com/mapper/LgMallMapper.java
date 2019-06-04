@@ -18,4 +18,5 @@ public interface LgMallMapper {
     int updateByPrimaryKey(LgMall record);
 
     List<LgMall> findMalls(LgMall mall);
+
 }
