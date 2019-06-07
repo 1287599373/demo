@@ -1,11 +1,15 @@
 package com.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.LocalDateTimeParser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +58,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public String saveUser(User user) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		user.setTime(sdf.format(new Date()));
 		int i = userMapper.insertSelective(user);
 		if(i>0)
 			return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
