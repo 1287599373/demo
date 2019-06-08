@@ -77,10 +77,11 @@ public class MallController extends BaseController{
 			    filepath.getParentFile().mkdirs(); 
 			    } 
 			//tempFile = new File(path + File.separator + fileName);
-			tempFile = new File(fileName);
-			file.transferTo(tempFile);
+			//tempFile = new File(fileName);
+			file.transferTo(filepath);
 			
-			resUrl.put("src", tempFile.getPath());
+			//resUrl.put("src", filepath.getPath());
+			resUrl.put("src", fileName);
 		    res.put("code", 0);
 		    res.put("msg", "上传成功！");
 		    res.put("data", resUrl);
