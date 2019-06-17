@@ -2,23 +2,21 @@ package com.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.LgMallMapper;
 import com.model.LgMall;
-import com.model.User;
 import com.service.MallService;
 import com.utils.ResultEnum;
 import com.utils.ResultUtils;
@@ -41,6 +39,8 @@ public class MallServiceImpl implements MallService{
 
 	@Override
 	public String saveMall(LgMall mall) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		mall.setTime(sdf.format(new Date()));
 		int i = mallMapper.insertSelective(mall);
 		if(i>0)
 			return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();

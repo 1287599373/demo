@@ -76,11 +76,8 @@ public class MallController extends BaseController{
 			if (!filepath.getParentFile().exists()) { 
 			    filepath.getParentFile().mkdirs(); 
 			    } 
-			//tempFile = new File(path + File.separator + fileName);
-			//tempFile = new File(fileName);
 			file.transferTo(filepath);
 			
-			//resUrl.put("src", filepath.getPath());
 			resUrl.put("src", fileName);
 		    res.put("code", 0);
 		    res.put("msg", "上传成功！");

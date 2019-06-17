@@ -105,7 +105,7 @@
   </update>
   
    <select id="getMallTradePage" resultType="map">
-  	select lu.UserName,lt.time,lm.mallorder,lm.name,lm.Requiredintegral,lt.mallNumber,lt.Consumptionintegral from lgtransactiondetails lt
+  	select lu.UserName,lt.time,lm.mallorder,lm.name,lm.specifications,lm.price,lm.stockbalance,lm.Requiredintegral,lt.mallNumber,lt.Consumptionintegral from lgtransactiondetails lt
 	LEFT JOIN lgmall lm
 	on lm.mallId = lt.mallId 
 	LEFT JOIN lguser lu
