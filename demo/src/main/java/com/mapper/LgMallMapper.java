@@ -1,6 +1,7 @@
 package com.mapper;
 
 import java.util.List;
+
 import com.model.LgMall;
 
 public interface LgMallMapper {
