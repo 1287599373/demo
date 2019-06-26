@@ -1,0 +1,28 @@
+package com.service;
+
+import java.util.List;
+
+import com.model.LgMall;
+import com.model.User;
+import com.utils.page.LayPage;
+import com.utils.page.PageUtils;
+
+public interface MallTradeService {
+
+	LayPage getMallTradePage(String startTime, String endTime, String userName,String mallOrder,String mallName,PageUtils pageUtils);
+	
+	/**获取所有货车*/
+	List<User> getAllTruckUser();
+	
+	/**获取所有商品*/
+	public List<LgMall> getAllLgMall();
+	
+	public LgMall finalMallByMallId(String id);
+	
+	/**校验函数**/
+	public String checkBugNumAndCosintegral(String mallid,String lguserid,String cosNum);
+	
+	/**添加交易记录*/
+	public String add(String mallid,String lguserid,String cosNum,String time);
+	
+}

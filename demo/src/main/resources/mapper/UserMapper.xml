@@ -186,6 +186,9 @@
     <if test="companyname !=null and companyname !=''">
     	and CompanyName like concat('%',#{companyname},'%')
     </if>
+    <if test="terracetype !=null and terracetype !=''">
+    	and Terracetype = #{terracetype}
+    </if>
     order by Time desc
   </select>
 </mapper>

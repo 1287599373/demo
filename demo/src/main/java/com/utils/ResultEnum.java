@@ -7,6 +7,10 @@ public enum ResultEnum {
 	,NOLOGIN(3,"未登录")
 	,USERNAME_OR_PASSWORD_ERR(4,"用户名或密码错误")
 	,FAIL(5,"处理失败"), NO_DATA(6,"无数据")
+	
+	,INSUFFICIENT_STOCK(7,"库存不足")
+	,INSUFFICIENT_INTEGRAL(8,"用户积分不足")
+	,USER_INFO_FAIL(9,"用户信息获取失败")
 	;
 	public int code;
 	public String msg;

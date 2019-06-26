@@ -2,8 +2,6 @@ package com.service;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import com.model.LgMall;

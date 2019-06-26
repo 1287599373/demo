@@ -13,7 +13,35 @@ public class LgMall {
 
     private Integer mallorder;
 
-    public Integer getMallid() {
+    private String specifications;
+
+    private Double price;
+
+    private Integer stockbalance;
+    
+    //查询条件
+    private String startTime;
+    
+    private String endTime;
+    
+    
+    public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	public Integer getMallid() {
         return mallid;
     }
 
@@ -59,5 +87,29 @@ public class LgMall {
 
     public void setMallorder(Integer mallorder) {
         this.mallorder = mallorder;
+    }
+
+    public String getSpecifications() {
+        return specifications;
+    }
+
+    public void setSpecifications(String specifications) {
+        this.specifications = specifications == null ? null : specifications.trim();
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getStockbalance() {
+        return stockbalance;
+    }
+
+    public void setStockbalance(Integer stockbalance) {
+        this.stockbalance = stockbalance;
     }
 }

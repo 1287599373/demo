@@ -8,9 +8,13 @@
     <result column="Requiredintegral" property="requiredintegral" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="VARCHAR" />
     <result column="mallorder" property="mallorder" jdbcType="INTEGER" />
+    <result column="specifications" property="specifications" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="stockbalance" property="stockbalance" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    mallId, name, imageUrl, Requiredintegral, time, mallorder
+    mallId, name, imageUrl, Requiredintegral, time, mallorder, specifications, price, 
+    stockbalance
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,10 +28,12 @@
   </delete>
   <insert id="insert" parameterType="com.model.LgMall" >
     insert into lgmall (mallId, name, imageUrl, 
-      Requiredintegral, time, mallorder
+      Requiredintegral, time, mallorder, 
+      specifications, price, stockbalance
       )
     values (#{mallid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{imageurl,jdbcType=VARCHAR}, 
-      #{requiredintegral,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, #{mallorder,jdbcType=INTEGER}
+      #{requiredintegral,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, #{mallorder,jdbcType=INTEGER}, 
+      #{specifications,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{stockbalance,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.model.LgMall" >
@@ -51,6 +57,15 @@
       <if test="mallorder != null" >
         mallorder,
       </if>
+      <if test="specifications != null" >
+        specifications,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="stockbalance != null" >
+        stockbalance,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="mallid != null" >
@@ -70,6 +85,15 @@
       </if>
       <if test="mallorder != null" >
         #{mallorder,jdbcType=INTEGER},
+      </if>
+      <if test="specifications != null" >
+        #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="stockbalance != null" >
+        #{stockbalance,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -91,6 +115,15 @@
       <if test="mallorder != null" >
         mallorder = #{mallorder,jdbcType=INTEGER},
       </if>
+      <if test="specifications != null" >
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="stockbalance != null" >
+        stockbalance = #{stockbalance,jdbcType=INTEGER},
+      </if>
     </set>
     where mallId = #{mallid,jdbcType=INTEGER}
   </update>
@@ -100,10 +133,14 @@
       imageUrl = #{imageurl,jdbcType=VARCHAR},
       Requiredintegral = #{requiredintegral,jdbcType=INTEGER},
       time = #{time,jdbcType=VARCHAR},
-      mallorder = #{mallorder,jdbcType=INTEGER}
+      mallorder = #{mallorder,jdbcType=INTEGER},
+      specifications = #{specifications,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      stockbalance = #{stockbalance,jdbcType=INTEGER}
     where mallId = #{mallid,jdbcType=INTEGER}
   </update>
-    <select id="findMalls" parameterType="com.model.LgMall" resultMap="BaseResultMap">
+  
+   <select id="findMalls" parameterType="com.model.LgMall" resultMap="BaseResultMap">
   	select
   		<include refid="Base_Column_List" />
     from lgmall
@@ -111,9 +148,16 @@
     <if test="name !=null and name !=''">
     	and name like concat('%',#{name},'%')
     </if>
-    <if test="mallorder !=null and mallorder !=''">
-    	and mallorder like concat('%',#{mallorder},'%')
+    <if test="specifications !=null and specifications !=''">
+    	and specifications like concat('%',#{specifications},'%')
     </if>
-    order by time desc
+    <if test="startTime !=null and startTime !=''">
+  		and time &gt;= #{startTime}
+  	</if>
+  	<if test="endTime !=null and endTime !=''">
+  		and time &lt;= #{endTime}
+  	</if>
+    order by mallorder asc
   </select>
+  
 </mapper>

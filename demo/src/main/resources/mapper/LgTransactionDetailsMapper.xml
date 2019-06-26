@@ -126,6 +126,6 @@
   	<if test="mallName !=null and mallName !=''">
   		and lm.name like concat('%',#{mallName},'%')
   	</if>
-	ORDER BY lt.time asc
+	ORDER BY lt.time desc
   </select>
 </mapper>

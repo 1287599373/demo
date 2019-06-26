@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
@@ -38,6 +39,7 @@ public class MallServiceImpl implements MallService{
 	}
 
 	@Override
+	@Transactional
 	public String saveMall(LgMall mall) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		mall.setTime(sdf.format(new Date()));
@@ -60,6 +62,7 @@ public class MallServiceImpl implements MallService{
 	}
 
 	@Override
+	@Transactional
 	public String updateMall(LgMall mall) {
 		if(null == mall || null == mall.getMallid()) {
 			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();
@@ -71,6 +74,7 @@ public class MallServiceImpl implements MallService{
 	}
 
 	@Override
+	@Transactional
 	public String delete(String ids) {
 		if(StringUtils.isEmpty(ids)) {
 			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();

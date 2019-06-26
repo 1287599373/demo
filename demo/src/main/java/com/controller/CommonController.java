@@ -35,12 +35,4 @@ public class CommonController extends BaseController{
 		return page;
 	}
 	
-	@RequestMapping("/getMallTradePage")
-	public LayPage getMallTradePage(String startTime,String endTime,String userName,String mallOrder,String mallName) {
-		log.info("getLgBidPeoplePage-->params:{},{},{},{},{}",startTime,endTime,userName,mallOrder,mallName);
-		PageUtils pageUtils = new PageUtils(request);
-		LayPage page = commonService.getMallTradePage(startTime,endTime,userName,mallOrder,mallName,pageUtils);
-		return page;
-	}
-	
 }
