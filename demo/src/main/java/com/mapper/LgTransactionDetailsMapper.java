@@ -23,4 +23,7 @@ public interface LgTransactionDetailsMapper {
 
     List<Map<String, Object>> getMallTradePage(@Param("startTime") String startTime,@Param("endTime") String endTime,
     			@Param("userName") String userName,@Param("mallOrder") String mallOrder,@Param("mallName") String mallName);
+
+	List<Map<String, String>> getAllMallTrade(@Param("startTime") String startTime,@Param("endTime") String endTime,
+			@Param("userName") String userName,@Param("mallOrder") String mallOrder,@Param("mallName") String mallName);
 }

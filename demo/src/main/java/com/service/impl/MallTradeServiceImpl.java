@@ -1,8 +1,11 @@
 package com.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import com.model.LgMall;
 import com.model.LgTransactionDetails;
 import com.model.User;
 import com.service.MallTradeService;
+import com.utils.ExcelUtils;
 import com.utils.ResultEnum;
 import com.utils.ResultUtils;
 import com.utils.page.LayPage;
@@ -27,7 +31,8 @@ import com.utils.page.PageUtils;
 
 @Service
 public class MallTradeServiceImpl implements MallTradeService {
-	
+	private final static String[] mall_excel_title = {"货车用户名","商品名称","商品规格","商品价格/元","商品库存量","商品积分","消费数量","消费积分","日期"};
+	private final static String[] mall_excel_key = {"UserName","name","specifications","price","stockbalance","Requiredintegral","mallNumber","Consumptionintegral","time"};
 	@Autowired
 	private LgTransactionDetailsMapper lgTransactionDetailsMapper;
 	
@@ -159,6 +164,18 @@ public class MallTradeServiceImpl implements MallTradeService {
 		
 		lgTransactionDetailsMapper.insert(record);
 		return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
+	}
+
+	@Override
+	public void export(HttpServletResponse response, String startTime, String endTime, String userName,
+			String mallOrder, String mallName) {
+		List<Map<String,String>> dataList = lgTransactionDetailsMapper.getAllMallTrade(startTime,endTime,userName,mallOrder,mallName);
+		try {
+			ExcelUtils.createExcel(response, dataList, mall_excel_key, mall_excel_title, "spjy.xls");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

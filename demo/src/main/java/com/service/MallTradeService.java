@@ -2,6 +2,8 @@ package com.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.model.LgMall;
 import com.model.User;
 import com.utils.page.LayPage;
@@ -24,5 +26,8 @@ public interface MallTradeService {
 	
 	/**添加交易记录*/
 	public String add(String mallid,String lguserid,String cosNum,String time);
+
+	void export(HttpServletResponse response, String startTime, String endTime, String userName, String mallOrder,
+			String mallName);
 	
 }

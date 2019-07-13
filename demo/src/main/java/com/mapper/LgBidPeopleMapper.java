@@ -21,4 +21,6 @@ public interface LgBidPeopleMapper {
     int updateByPrimaryKey(LgBidPeople record);
 
 	List<Map<String, Object>> getLgBidPeoplePage(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("userName") String userName);
+
+	List<Map<String, String>> getAllLgBidPeople(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("userName") String userName);
 }

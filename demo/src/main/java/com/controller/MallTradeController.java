@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,6 +64,12 @@ public class MallTradeController extends BaseController{
 		String lguserid = UserName;
 		String cosnum = cosNum;
 		return mallTradeService.add(mallid,lguserid,cosnum,time);
+	}
+	
+	@RequestMapping("/exportMall")
+	public void export(HttpServletResponse response,String startTime,String endTime,String userName
+			,String mallOrder,String mallName){
+		mallTradeService.export(response,startTime,endTime,userName,mallOrder,mallName);
 	}
 	
 }

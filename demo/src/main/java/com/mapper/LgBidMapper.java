@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.model.LgBid;
 
@@ -22,4 +21,6 @@ public interface LgBidMapper {
     int updateByPrimaryKey(LgBid record);
 
 	List<Map<String, Object>> getLgBidPage(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("userName") String userName);
+
+	List<Map<String, String>> getAllLgBid(@Param("startTime") String startTime,@Param("endTime") String endTime,@Param("userName") String userName);
 }
