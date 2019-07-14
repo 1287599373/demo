@@ -29,5 +29,7 @@ public interface MallTradeService {
 
 	void export(HttpServletResponse response, String startTime, String endTime, String userName, String mallOrder,
 			String mallName);
+
+	String updateTime(String time, Integer id);
 	
 }

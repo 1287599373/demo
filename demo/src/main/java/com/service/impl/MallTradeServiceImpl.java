@@ -178,6 +178,18 @@ public class MallTradeServiceImpl implements MallTradeService {
 		}
 	}
 
+	@Override
+	public String updateTime(String time, Integer id) {
+		LgTransactionDetails record = new LgTransactionDetails();
+		if(StringUtils.isEmpty(time) || null == id){
+			return ResultUtils.createResult(ResultEnum.PARAM_ERROR, null).toJSONString();
+		}
+		record.setTdid(id);
+		record.setTime(time);
+		lgTransactionDetailsMapper.updateByPrimaryKeySelective(record);
+		return ResultUtils.createResult(ResultEnum.SUCCESS, null).toJSONString();
+	}
+
 
 	
 }
